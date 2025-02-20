@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,   #2C3E50 0%, #000f1f 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .title {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            color: #004d4d;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            background: #e6e6e6;
+            transform: translateY(-2px);
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 1rem;
+            color: white;
+        }
+
+        .switch-form a {
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        /* SVG Icons */
+        .icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #004d4d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="container" id="loginForm">
+        <h1 class="title">USER LOGIN</h1>
+        <form onsubmit="return handleLogin(event)">
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <div class="error" id="loginUsernameError"></div>
+            </div>
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <div class="error" id="loginPasswordError"></div>
+            </div>
+            <button type="submit" class="submit-button">LOGIN</button>
+            <div class="switch-form">
+                Don't have an account? <a onclick="toggleForms()">Register</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="container hidden" id="registerForm">
+        <h1 class="title">REGISTER</h1>
+        <form onsubmit="return handleRegister(event)">
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <input type="text" id="registerName" placeholder="Full Name" required>
+                <div class="error" id="registerNameError"></div>
+            </div>
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <div class="error" id="registerEmailError"></div>
+            </div>
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <div class="error" id="registerPasswordError"></div>
+            </div>
+            <div class="input-group">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <div class="error" id="confirmPasswordError"></div>
+            </div>
+            <button type="submit" class="submit-button">REGISTER</button>
+            <div class="switch-form">
+                Already have an account? <a onclick="toggleForms()">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Toggle between login and registration forms
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+            clearErrors();
+            clearInputs();
+        }
+
+        // Clear all error messages
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(element => element.textContent = '');
+        }
+
+        // Clear all input fields
+        function clearInputs() {
+            const inputElements = document.querySelectorAll('input');
+            inputElements.forEach(element => element.value = '');
+        }
+
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            clearErrors();
+
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Basic validation
+            let isValid = true;
+
+            if (!username) {
+                document.getElementById('loginUsernameError').textContent = 'Username is required';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('loginPasswordError').textContent = 'Password is required';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Here you would typically make an API call to your backend
+                console.log('Login attempt:', { username, password });
+                alert('Login successful!');
+                clearInputs();
+            }
+
+            return false;
+        }
+
+        // Handle registration form submission
+        function handleRegister(event) {
+            event.preventDefault();
+            clearErrors();
+
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic validation
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('registerNameError').textContent = 'Name is required';
+                isValid = false;
+            }
+
+            if (!email) {
+                document.getElementById('registerEmailError').textContent = 'Email is required';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('registerPasswordError').textContent = 'Password is required';
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('registerPasswordError').textContent = 'Password must be at least 6 characters';
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Here you would typically make an API call to your backend
+                console.log('Registration attempt:', { name, email, password });
+                alert('Registration successful!');
+                clearInputs();
+                toggleForms(); // Switch back to login form
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>

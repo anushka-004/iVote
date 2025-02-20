@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iVote</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f1f3;
+            line-height: 1.6;
+        }
+
+       
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        
+        header {
+            background: #2C3E50;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: clamp(1.5rem, 4vw, 2.125rem);
+            padding: 0.5rem;
+        }
+
+        #navbar nav {
+            background-color: #bdeaeb;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        #navbar nav a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            color: #1D3557;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        #navbar nav a:hover {
+            background-color: #a5d6d7;
+        }
+
+      
+        .video-section {
+            height: 60vh;
+            max-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       
+        #image {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .image-slider {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            max-width: 100%;
+        }
+
+        .slider-image {
+            position: absolute;
+            top: 230px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            background: #ECF0F1;
+            border: 3px solid #2C2C2C;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .content h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+       
+        .footer {
+            background-color: #000000;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+      
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            #navbar nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .image-slider {
+                height: 300px;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .video-section {
+                height: 40vh;
+            }
+        }
+
+     
+        @keyframes slideShow1 {
+            0%, 20% { opacity: 1; }
+            25%, 100% { opacity: 0; }
+        }
+
+        @keyframes slideShow2 {
+            20%, 45% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes slideShow3 {
+            45%, 70% { opacity: 1; }
+            75%, 100% { opacity: 0; }
+        }
+
+        @keyframes slideShow4 {
+            70%, 95% { opacity: 1; }
+            0%, 65% { opacity: 0; }
+        }
+
+        .slider-image:nth-child(1) { animation: slideShow1 16s infinite; }
+        .slider-image:nth-child(2) { animation: slideShow2 16s infinite; }
+        .slider-image:nth-child(3) { animation: slideShow3 16s infinite; }
+        .slider-image:nth-child(4) { animation: slideShow4 16s infinite; }
+    </style>
+</head>
+</body>
+</html>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>iVote  -   Online Voting Plateform</h1>
+        </div>
+        <div id="navbar"> 
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="login.html">login / Register </a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                    
+                </ul>
+            </nav> 
+         </div> 
+    </header>
+
+    <div class="container">
+        <div class="video-section">
+            <video width="100%" height="auto" autoplay muted  loop playsinline>
+                <source src="home vid.mp4" type="video/mp4" >
+            </video>
+            </div>
+        <div id="image">
+            <div class="image-slider">
+                <img src="home gif.jpeg" alt="loading" class="slider-image" width="300px" height="400px">
+                <img src="home2 gif.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
+                <img src="home3.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
+                <img src="home4.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
+            </div>
+            
+       
+        <div class="content"> 
+            <h2>i-Voting</h2>
+            <p>Welcome to the future of voting! Our platform makes it easier than ever for educational institutions, non-government organizations, and community groups to conduct secure and efficient elections. Whether you’re a student, a teacher, a member, or a participant in any organization, your vote matters, and we are here to make sure it’s counted.</p>
+
+            <p>Why Choose Us?
+
+                Security First: We implement advanced encryption and data protection measures to ensure that every vote is secure and cannot be tampered with.<br>
+                Transparency: Our system is designed to offer full transparency in the voting process, with real-time vote tracking and post-election audits available for your peace of mind.<br>
+                Easy to Use: Voting has never been simpler. Whether you’re on a desktop, tablet, or mobile device, our platform is optimized for an intuitive and smooth experience.<br>
+                Anywhere, Anytime: You can participate in voting from wherever you are – at home, at work, or on the go. No need to be physically present to make your voice heard.
+                For All Organizations: We cater to schools, colleges, clubs, and other non-government organizations. If you need a fair, modern solution for decision-making, we've got you covered..</p>
+
+            <h2>Who can use e-Voting facility?</h2>
+            <p>Any company which wants to facilitate e-Voting can use iVote. This system is available for all . <a href="#">Click here for details.</a></p>
+
+            <h2>How can I cast my vote online?</h2>
+            <p>There are multiple options to cast your vote online through:</p>
+            <ul>
+                <li>iVote's  e-Voting Portal</li>
+              
+            </ul>
+            
+        
+    </div>
+    </div>
+</div>
+    <div class="footer">
+        <p>© 2025 iVote. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider-image');
+        const totalImages = images.length;
+    
+        function showNextImage() {
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].style.opacity = 1;
+        }
+    
+        setInterval(showNextImage, 4000); 
+    
+
+        images[currentIndex].style.opacity = 1;
+    </script>
+</body>
+</html>
