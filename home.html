@@ -231,6 +231,7 @@
                 <source src="home vid.mp4" type="video/mp4" >
             </video>
             </div>
+
         <div id="image">
             <div class="image-slider">
                 <img src="home gif.jpeg" alt="loading" class="slider-image" width="300px" height="400px">
@@ -266,6 +267,7 @@
     </div>
     </div>
 </div>
+
     <div class="footer">
         <p>© 2025 iVote. All rights reserved.</p>
         <div class="social-links">
@@ -273,7 +275,7 @@
             <a href="#">Twitter</a>
             <a href="#">Instagram</a>
         </div>
-
+    </div>
 
     <script>
         let currentIndex = 0;
@@ -287,9 +289,22 @@
         }
     
         setInterval(showNextImage, 4000); 
-    
-
         images[currentIndex].style.opacity = 1;
+
+        localStorage.setItem('userName', 'Anushka');
+        console.log('Stored User:', localStorage.getItem('userName'));
+
+        // Event Listener for Navigation
+        const navLinks = document.querySelectorAll('#navbar nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent actual navigation
+                alert(`Navigating to ${link.textContent}`);
+            });
+        });
+
+        // Placeholder for Backend Integration
+        // This section will interact with your mate
     </script>
 </body>
 </html>
