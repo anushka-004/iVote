@@ -7,139 +7,75 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 
-        *,
-        *::before,
-        *::after {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
         body {
-          font-family: Inter, sans-serif;
-          color: rgb(171, 4, 112);
-          font-weight: 500px;
-          background-color: #e9e9f0;
-         background: url("login.jpg")  no-repeat center center fixed;
-        }
-
-        img {
-          width: 50%;
-          height: 80%;
-          display: block;
-        }
-        .container1{
-            margin-top: 0px;
-            padding-top: 0px;
+            font-family: Inter, sans-serif;
+            background-color: #e9e9f0;
+            background: url("login.jpg") no-repeat center center fixed;
+            color: rgba(0, 0, 0, 0.853);
         }
 
         .container {
-          width: 100%;
-          max-width: 820px;
-          height: 340px;
-          display: flex;
-          gap: 10px;
-          margin-top: 100px;
-          margin-left: 350px;
-          justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 cards in a row */
+            grid-template-rows: repeat(2, auto); /* 2 rows */
+            grid-gap: 20px; /* Spacing between cards */
+            max-width: 1200px; /* Adjust to your needs */
+            margin: 50px auto; /* Center the container */
         }
 
         .card {
-          min-width: 70px;
-          height: 45%;
-          border-radius: 30px;
-          overflow: hidden;
-
-          display: flex;
-          align-items: flex-end;
-          flex-grow: 1;
-          cursor: pointer;
-          position: relative;
-          transition: flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-
-          --transition-timing: 0.35s;
+            position: relative;
+            height: 300px; /* Ensure all cards have consistent height */
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, z-index 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow */
         }
 
         .card:hover {
-          flex-grow: 7;
+            transform: scale(1.05); /* Slight zoom effect */
+            z-index: 2; /* Bring the card to the front */
         }
 
         .card > .background {
-          position: absolute;
-          inset: 0;
-          object-fit: cover;
-          object-position: center;
-          filter: brightness(0.4);
-          z-index: -1;
-          transition: var(--transition-timing) ease;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4); /* Dim the background */
+            transition: filter 0.3s ease;
         }
+
         .card:hover > .background {
-          filter: brightness(1);
+            filter: brightness(1); /* Brighten the background on hover */
         }
 
-        .card > .card-content {
-          display: flex;
-          align-items: center;
-          position: absolute;
-          left: 10px;
-          right: 10px;
-          bottom: 20px;
-          overflow: hidden;
-          transition: var(--transition-timing);
-          z-index: 10;
-        }
-        .card:hover > .card-content {
-          inset: 40px;
-          top: auto;
-         justify-content: right;
+        .card-content {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 20px;
+            color: #3B82F6;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
 
-        .card-content > * {
-          transition: var(--transition-timing);
+        .card:hover .card-content {
+            bottom: 40px;
         }
 
-        .card-content > .profile-image {
-          min-width:fit-content;
-          max-width:fit-content;
-          height: 50px;
-          border: 1px solid white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-          overflow: hidden;
-        }
-        .card:hover .profile-image {
-          border: 1px solid rgb(110, 252, 205);
-        }
-        .profile-image > svg {
-          stroke: #fefefe;
-        }
-        .card:hover .profile-image > svg {
-          stroke: rgb(110, 252, 205);
+        .title {
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .card-content > .title {
-          white-space: pre;
-          margin-left: 10px;
-          translate: 0 100%;
-          opacity: 0;
-        }
         .card:hover .title {
-          opacity: 1;
-          translate: 0 0;
+            opacity: 1;
         }
 
-        .card > .backdrop {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 100px;
-          z-index: 0;
-          background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
-        }
-        
         header {
             background: #2C3E50;
             color: #fff;
@@ -151,17 +87,14 @@
             font-size: clamp(1.5rem, 4vw, 2.125rem);
             padding: 0.5rem;
         }
-
-        #navbar nav {
-            background-color: #bdeaeb;
-            padding: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+        #navbar nav{
+          background-color: white;
         }
-
+         
         #navbar nav ul {
             list-style: none;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
         }
@@ -171,14 +104,12 @@
             padding: 0.5rem 1rem;
             color: #1D3557;
             display: block;
-            transition: background-color 0.3s;
         }
 
         #navbar nav a:hover {
             background-color: #a5d6d7;
         }
 
-        
         .footer {
             background-color: #000000;
             color: white;
@@ -200,82 +131,70 @@
             text-decoration: none;
         }
 
+        .full-height {
+    min-height: 100vh; /* 100vh is 100% of the viewport height */
+}
 
     </style>
+
 </head>
 <body>
-
+ 
+  
     <header>
-        <div class="container1">
-            <h1>iVote  -   Online Voting Plateform</h1>
-        </div>
-        <div id="navbar"> 
+        <h1>iVote - Online Voting Platform</h1>
+        <div id="navbar">
             <nav>
                 <ul>
                     <li><a href="home2.html">Home</a></li>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Edit/View profile</a></li>
+                    <li><a href="#">Edit/View Profile</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Logout</a></li>
-                    
                 </ul>
-            </nav> 
-         </div> 
+            </nav>
+        </div>
     </header>
- 
-    
-
+    <div class="full-height">
     <div class="container">
         <div class="card">
-          <img class="background" src="vote_6229257.png" alt="">
-          <div class="card-content">
-            <h3 class="title">conduct voting</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="vote_6229257.png" alt="Conduct Voting">
+            <div class="card-content">
+                <h3 class="title">Conduct Voting</h3>
+            </div>
         </div>
-
         <div class="card">
-          <img class="background" src="Browse thousands of Vote images for design inspiration.jpg" alt="">
-          <div class="card-content">
-            <h3 class="title">perform voting</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="Browse thousands of Vote images for design inspiration.jpg" alt="Perform Voting">
+            <div class="card-content">
+                <h3 class="title">Perform Voting</h3>
+            </div>
         </div>
-
         <div class="card">
-          <img class="background" src="icon 1_4.jpg" alt="">
-          <div class="card-content">
-            <h3 class="title">previous elections</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="icon 1_4.jpg" alt="Previous Elections">
+            <div class="card-content">
+                <h3 class="title">Previous Elections</h3>
+            </div>
         </div>
-
         <div class="card">
-          <img class="background" src="Designer Challenges Himself To Create Logos With Hidden Meanings For A Year, And Result Is Amazing.jpg" alt="">
-          <div class="card-content">
-            <h3 class="title">results</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="Designer Challenges Himself To Create Logos With Hidden Meanings For A Year, And Result Is Amazing.jpg" alt="Results">
+            <div class="card-content">
+                <h3 class="title">Results</h3>
+            </div>
         </div>
-
         <div class="card">
-          <img class="background" src="Ce graphiste transforme les mots en logos créatifs pour renforcer leur sens.jpg" alt="">
-          <div class="card-content">
-            <h3 class="title">upcoming elections</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="Ce graphiste transforme les mots en logos créatifs pour renforcer leur sens.jpg" alt="Upcoming Elections">
+            <div class="card-content">
+                <h3 class="title">Upcoming Elections</h3>
+            </div>
         </div>
-
         <div class="card">
-          <img class="background" src="Your Vote Counts.jpg" alt="">
-          <div class="card-content">
-            <h3 class="title">current voting</h3>
-          </div>
-          <div class="backdrop"></div>
+            <img class="background" src="Your Vote Counts.jpg" alt="Current Voting">
+            <div class="card-content">
+                <h3 class="title">Current Voting</h3>
+            </div>
         </div>
     </div>
 
-    
     <div class="footer">
         <p>© 2025 iVote. All rights reserved.</p>
         <div class="social-links">
@@ -283,21 +202,8 @@
             <a href="#">Twitter</a>
             <a href="#">Instagram</a>
         </div>
-
-    <script>
-      const cardsContainer = document.querySelector('.container');
-
-      cardsContainer.addEventListener("click", (e) => {
-        const target = e.target.closest(".card");
-
-        if (!target) return;
-
-        cardsContainer.querySelectorAll(".card").forEach((card) => {
-          card.classList.remove("active");
-        });
-
-        target.classList.add("active");
-      });
-    </script>
+    </div>
+ 
+</div>
 </body>
 </html>
