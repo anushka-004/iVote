@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System - Student Voting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .btn {
+            padding: 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            margin-top: 10px;
+        }
+        .primary-btn {
+            background-color: #2196F3;
+        }
+        .success-btn {
+            background-color: #4CAF50;
+        }
+        .danger-btn {
+            background-color: #f44336;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #e9f7fe;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .hidden {
+            display: none;
+        }
+        .voting-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Voting Page</h1>
+        
+        <!-- Student Authentication -->
+        <div id="studentAuthSection" class="card">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="studentId">Enter your Student ID:</label>
+                <input type="text" id="studentId" class="form-control" placeholder="Enter student ID">
+            </div>
+            <button class="btn primary-btn" onclick="authenticateStudent()">Login</button>
+            <div id="studentAuthMessage" class="message hidden"></div>
+        </div>
+        
+        <!-- Voting Section (hidden initially) -->
+        <div id="votingSection" class="hidden">
+            <h2>Available Voting Positions</h2>
+            <div id="votingPositions"></div>
+            <button class="btn success-btn" onclick="submitVote()">Submit Vote</button>
+            <div id="voteSubmitMessage" class="message hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        let studentId;
+
+        // Authenticate the student
+        function authenticateStudent() {
+            const enteredId = document.getElementById('studentId').value.trim();
+            const messageElement = document.getElementById('studentAuthMessage');
+            
+            const studentIds = JSON.parse(localStorage.getItem('studentIds') || '{}');
+            
+            if (studentIds[enteredId]) {
+                studentId = enteredId;  // Save the authenticated student ID
+                document.getElementById('studentAuthSection').classList.add('hidden');
+                document.getElementById('votingSection').classList.remove('hidden');
+                loadVotingPositions();
+            } else {
+                messageElement.textContent = "Invalid Student ID. Please try again.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+            }
+        }
+        
+        // Load available voting positions and candidates
+        function loadVotingPositions() {
+            const votingPositions = JSON.parse(localStorage.getItem('votingPositions') || '{}');
+            const votingPositionsElement = document.getElementById('votingPositions');
+            votingPositionsElement.innerHTML = '';  // Clear the list
+            
+            if (Object.keys(votingPositions).length === 0) {
+                votingPositionsElement.innerHTML = '<p class="info">No voting positions available.</p>';
+                return;
+            }
+            
+            for (const position in votingPositions) {
+                const candidates = votingPositions[position].candidates;
+                
+                const card = document.createElement('div');
+                card.classList.add('card');
+                
+                const positionTitle = document.createElement('h3');
+                positionTitle.textContent = position;
+                card.appendChild(positionTitle);
+                
+                candidates.forEach(candidate => {
+                    const formGroup = document.createElement('div');
+                    formGroup.classList.add('form-group');
+                    
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `vote-${position}`;
+                    input.value = candidate;
+                    input.id = `vote-${position}-${candidate}`;
+                    
+                    const label = document.createElement('label');
+                    label.setAttribute('for', input.id);
+                    label.textContent = candidate;
+                    
+                    formGroup.appendChild(input);
+                    formGroup.appendChild(label);
+                    
+                    card.appendChild(formGroup);
+                });
+                
+                votingPositionsElement.appendChild(card);
+            }
+        }
+
+        // Submit the student's vote
+        function submitVote() {
+            const votingPositions = JSON.parse(localStorage.getItem('votingPositions') || '{}');
+            const messageElement = document.getElementById('voteSubmitMessage');
+            let votesSubmitted = 0;
+
+            for (const position in votingPositions) {
+                const selectedCandidate = document.querySelector(`input[name="vote-${position}"]:checked`);
+                
+                if (selectedCandidate) {
+                    const candidate = selectedCandidate.value;
+                    if (!votingPositions[position].votes[studentId]) {
+                        votingPositions[position].votes[studentId] = candidate;
+                        votesSubmitted++;
+                    } else {
+                        messageElement.textContent = `You have already voted for "${position}".`;
+                        messageElement.className = "message error";
+                        messageElement.classList.remove("hidden");
+                        return;
+                    }
+                }
+            }
+
+            if (votesSubmitted > 0) {
+                localStorage.setItem('votingPositions', JSON.stringify(votingPositions));
+                messageElement.textContent = "Your votes have been submitted successfully!";
+                messageElement.className = "message success";
+                messageElement.classList.remove("hidden");
+            } else {
+                messageElement.textContent = "Please select a candidate for each position.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+            }
+        }
+        
+        // Initialize when the page loads
+        window.onload = function() {
+            // Clear any previous votes if needed
+        };
+    </script>
+</body>
+</html>
+

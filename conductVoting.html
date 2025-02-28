@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System - Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .btn {
+            padding: 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            margin-top: 10px;
+        }
+        .primary-btn {
+            background-color: #2196F3;
+        }
+        .success-btn {
+            background-color: #4CAF50;
+        }
+        .danger-btn {
+            background-color: #f44336;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #e9f7fe;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .hidden {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voting System Administration</h1>
+        
+        <!-- Admin Authentication -->
+        <div id="adminAuthSection" class="card">
+            <h2>Admin Authentication</h2>
+            <div class="form-group">
+                <label for="adminPassword">Admin Password:</label>
+                <input type="password" id="adminPassword" class="form-control" placeholder="Enter admin password">
+            </div>
+            <button class="btn primary-btn" onclick="authenticateAdmin()">Login</button>
+            <div id="adminAuthMessage" class="message hidden"></div>
+            <p class="info" style="font-size:0.8em; text-align:center; margin-top:10px;">For demo purposes, use "admin123" as the password</p>
+        </div>
+        
+        <!-- Admin Control Panel (initially hidden) -->
+        <div id="adminControlPanel" class="hidden">
+            <div class="card">
+                <h2>Create New Voting Position</h2>
+                <div class="form-group">
+                    <label for="positionTitle">Position Title:</label>
+                    <input type="text" id="positionTitle" class="form-control" placeholder="e.g., Class President">
+                </div>
+                <div class="form-group">
+                    <label for="candidatesList">Candidates (comma-separated):</label>
+                    <input type="text" id="candidatesList" class="form-control" placeholder="e.g., John Doe, Jane Smith, Bob Johnson">
+                </div>
+                <button class="btn success-btn" onclick="createVotingPosition()">Create Position</button>
+                <div id="createPositionMessage" class="message hidden"></div>
+            </div>
+            
+            <div class="card">
+                <h2>Current Voting Positions</h2>
+                <div id="votingPositionsList">
+                    <p class="info">No voting positions created yet.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Student IDs Management</h2>
+                <p>Here you can manage valid student IDs for voting authentication.</p>
+                <div class="form-group">
+                    <label for="newStudentId">Add New Student ID:</label>
+                    <input type="text" id="newStudentId" class="form-control" placeholder="e.g., S12345">
+                </div>
+                <button class="btn primary-btn" onclick="addStudentId()">Add Student ID</button>
+                <div id="addStudentMessage" class="message hidden"></div>
+                <div id="studentIdsList" style="margin-top:20px;">
+                    <p>Loading student IDs...</p>
+                </div>
+            </div>
+            
+            <button class="btn danger-btn" onclick="adminLogout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the storage when the page loads
+        function initializeStorage() {
+            // Check if positions exist in localStorage
+            if (!localStorage.getItem('votingPositions')) {
+                localStorage.setItem('votingPositions', JSON.stringify({}));
+            }
+            
+            // Check if student IDs exist in localStorage
+            if (!localStorage.getItem('studentIds')) {
+                // Leave student IDs empty, backend will handle ID management
+                localStorage.setItem('studentIds', JSON.stringify({}));
+            }
+        }
+        
+        // Admin Authentication
+        function authenticateAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            const messageElement = document.getElementById('adminAuthMessage');
+            
+            if (password === 'admin123') { // Simple password for demo
+                document.getElementById('adminAuthSection').classList.add('hidden');
+                document.getElementById('adminControlPanel').classList.remove('hidden');
+                updateVotingPositionsList();
+                updateStudentIdsList();
+            } else {
+                messageElement.textContent = "Invalid password. Please try again.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+            }
+        }
+        
+        // Admin Logout
+        function adminLogout() {
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminAuthSection').classList.remove('hidden');
+            document.getElementById('adminControlPanel').classList.add('hidden');
+            document.getElementById('adminAuthMessage').classList.add('hidden');
+        }
+        
+        // Create new voting position
+        function createVotingPosition() {
+            const positionTitle = document.getElementById('positionTitle').value.trim();
+            const candidatesInput = document.getElementById('candidatesList').value.trim();
+            const messageElement = document.getElementById('createPositionMessage');
+            
+            if (!positionTitle || !candidatesInput) {
+                messageElement.textContent = "Please fill in all fields.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+                return;
+            }
+            
+            const candidates = candidatesInput.split(',').map(candidate => candidate.trim()).filter(candidate => candidate);
+            
+            if (candidates.length < 2) {
+                messageElement.textContent = "Please enter at least two candidates.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+                return;
+            }
+            
+            // Get current positions from localStorage
+            const votingPositions = JSON.parse(localStorage.getItem('votingPositions') || '{}');
+            
+            // Add new position
+            votingPositions[positionTitle] = {
+                candidates: candidates,
+                votes: {}
+            };
+            
+            // Save back to localStorage
+            localStorage.setItem('votingPositions', JSON.stringify(votingPositions));
+            
+            // Clear form
+            document.getElementById('positionTitle').value = '';
+            document.getElementById('candidatesList').value = '';
+            
+            // Show success message
+            messageElement.textContent = `Voting position "${positionTitle}" created successfully!`;
+            messageElement.className = "message success";
+            messageElement.classList.remove("hidden");
+            
+            // Update list
+            updateVotingPositionsList();
+        }
+        
+        // Update the list of current voting positions
+        function updateVotingPositionsList() {
+            const votingPositions = JSON.parse(localStorage.getItem('votingPositions') || '{}');
+            const positionsListElement = document.getElementById('votingPositionsList');
+            positionsListElement.innerHTML = '';
+            
+            if (Object.keys(votingPositions).length === 0) {
+                positionsListElement.innerHTML = '<p class="info">No voting positions created yet.</p>';
+                return;
+            }
+            
+            const table = document.createElement('table');
+            const headerRow = table.insertRow();
+            headerRow.insertCell(0).textContent = 'Position';
+            headerRow.insertCell(1).textContent = 'Candidates';
+            
+            for (const position in votingPositions) {
+                const row = table.insertRow();
+                row.insertCell(0).textContent = position;
+                row.insertCell(1).textContent = votingPositions[position].candidates.join(', ');
+            }
+            
+            positionsListElement.appendChild(table);
+        }
+        
+        // Add a new student ID
+        function addStudentId() {
+            const newStudentId = document.getElementById('newStudentId').value.trim();
+            const messageElement = document.getElementById('addStudentMessage');
+            
+            if (!newStudentId) {
+                messageElement.textContent = "Please enter a student ID.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+                return;
+            }
+            
+            const studentIds = JSON.parse(localStorage.getItem('studentIds') || '{}');
+            
+            if (studentIds[newStudentId]) {
+                messageElement.textContent = "This student ID already exists.";
+                messageElement.className = "message error";
+                messageElement.classList.remove("hidden");
+                return;
+            }
+            
+            // Add new ID to storage
+            studentIds[newStudentId] = true;
+            localStorage.setItem('studentIds', JSON.stringify(studentIds));
+            
+            // Clear input
+            document.getElementById('newStudentId').value = '';
+            
+            // Show success message
+            messageElement.textContent = `Student ID "${newStudentId}" added successfully!`;
+            messageElement.className = "message success";
+            messageElement.classList.remove("hidden");
+            
+            // Update list
+            updateStudentIdsList();
+        }
+        
+        // Update the list of student IDs
+        function updateStudentIdsList() {
+            const studentIds = JSON.parse(localStorage.getItem('studentIds') || '{}');
+            const idsListElement = document.getElementById('studentIdsList');
+            idsListElement.innerHTML = '';
+            
+            if (Object.keys(studentIds).length === 0) {
+                idsListElement.innerHTML = '<p class="info">No student IDs added yet.</p>';
+                return;
+            }
+            
+            const ul = document.createElement('ul');
+            for (const id in studentIds) {
+                const li = document.createElement('li');
+                li.textContent = id;
+                ul.appendChild(li);
+            }
+            
+            idsListElement.appendChild(ul);
+        }
+        
+        // Initialize the app when the page loads
+        window.onload = function() {
+            initializeStorage();
+        };
+    </script>
+</body>
+</html>

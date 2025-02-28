@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .winner {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            background-color: #2196F3;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voting Results</h1>
+
+        <!-- Results table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Total Votes</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTable">
+                <!-- Rows will be added dynamically -->
+            </tbody>
+        </table>
+
+        <!-- Winner section -->
+        <div id="winnerSection" class="winner"></div>
+
+        <!-- Back to Admin Button -->
+        <button class="btn" onclick="backToAdmin()">Back to Admin</button>
+    </div>
+
+    <script>
+        // Fetch the voting results when the page loads
+        window.onload = function() {
+            fetchResults();
+        };
+
+        function fetchResults() {
+            // Example fetch for the backend data (replace with actual API endpoint)
+            fetch('/getVotingResults')  // Backend team should implement this API
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching results:', error);
+                });
+        }
+
+        function displayResults(results) {
+            const resultsTable = document.getElementById('resultsTable');
+            const winnerSection = document.getElementById('winnerSection');
+
+            // Clear previous table content
+            resultsTable.innerHTML = '';
+
+            let maxVotes = 0;
+            let winner = '';
+
+            // Display each candidate and their votes
+            results.forEach(result => {
+                const row = document.createElement('tr');
+                const candidateCell = document.createElement('td');
+                const votesCell = document.createElement('td');
+
+                candidateCell.textContent = result.candidate;
+                votesCell.textContent = result.votes;
+
+                row.appendChild(candidateCell);
+                row.appendChild(votesCell);
+                resultsTable.appendChild(row);
+
+                // Track the winner
+                if (result.votes > maxVotes) {
+                    maxVotes = result.votes;
+                    winner = result.candidate;
+                }
+            });
+
+            // Display the winner
+            winnerSection.textContent = `Winner: ${winner} with ${maxVotes} votes!`;
+        }
+
+        // Function to return to admin page
+        function backToAdmin() {
+            window.location.href = 'conductVoting.html';  // Redirect back to the admin page
+        }
+    </script>
+</body>
+</html>
+

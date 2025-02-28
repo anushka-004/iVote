@@ -294,14 +294,18 @@
         localStorage.setItem('userName', 'Anushka');
         console.log('Stored User:', localStorage.getItem('userName'));
 
-        // Event Listener for Navigation
-        const navLinks = document.querySelectorAll('#navbar nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent actual navigation
-                alert(`Navigating to ${link.textContent}`);
-            });
+       
+navLinks.forEach(link => {
+
+    if (!link.href.includes('login.html')) {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(`Navigating to ${link.textContent}`);
         });
+    }
+});
+
+
 
         // Placeholder for Backend Integration
         // This section will interact with your mate
