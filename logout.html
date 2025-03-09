@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - ConvoConstitution</title>
+   
+    <!-- Firebase SDK -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    background:url('Free vector.jpg');
+    backdrop-filter: blur(30px);
+    display: flex;
+    justify-content:center; /* Align content to the left */
+    align-items: center;
+    
+    background-size: cover; /* Ensure the image covers the entire screen */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+}
+
+.logout-container {
+    border:3px solid black;
+    border-radius:15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    height: 450px;
+    text-align: center;
+    margin-top:100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    color: #062745;
+    font-size: 3em;
+}
+
+p {
+    color: #0a2d30;
+    font-size: 1.6em;
+}
+
+.button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    border-radius: 25px; /* Rounded edges */
+    transform: translateY(-3px); 
+    /* background: linear-gradient(135deg, #d8580d, #e85617);  */
+
+}
+
+.button:hover {
+    background-color: #2980b9;
+
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="logout-container">
+        <h1>You have successfully logged out!</h1>
+        <p>Thank you for visiting iVote!</p>
+        <p>We hope to see you again soon.</p>
+        <a href="home.html" class="button">Return to Home</a>
+    </div>
+
+    <script>
+        // Firebase Configuration
+      
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Sign out the user
+        auth.signOut().then(() => {
+            console.log("User signed out");
+            // Redirect to homepage after logout
+            window.location.href = "index.html";
+        }).catch((error) => {
+            console.error("Error signing out: ", error);
+        });
+    </script>
+</body>
+</html>
