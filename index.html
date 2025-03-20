@@ -1,0 +1,46 @@
+<!-- index.html (Login Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Decentralized Voting - Login</title>
+    <script>
+       async function connectMetamask() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    const userAddress = accounts[0];
+
+                    // Display wallet address
+                    document.getElementById('walletAddress').innerText = `Wallet: ${userAddress}`;
+                    document.getElementById('walletAddress').classList.add("text-green-500");
+
+                    // Show success pop-up
+                    setTimeout(() => {
+                        alert("Login successful! Redirecting to home page...");
+                        window.location.href = "home.html";
+                    }, 500);  // Short delay before redirecting
+                } catch (error) {
+                    console.error(error);
+                    alert("Connection failed!");
+                }
+            } else {
+                alert('MetaMask is not installed. Please install it to use this feature.');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-b from-gray-800 to-gray-900 h-screen flex flex-col items-center justify-center text-white">
+    <div class="text-center">
+        <h1 class="text-3xl font-bold mb-6">Decentralized Voting System</h1>
+        <button onclick="connectMetamask()" class="bg-white text-green-700 font-semibold py-3 px-16 rounded-full focus:outline-none transition duration-300 ease-in-out hover:bg-gray-300 shadow-lg flex items-center justify-center mx-auto">
+            <i class="fas fa-wallet"></i> Log in with MetaMask
+        </button>
+        <p id="walletAddress" class="text-gray-300 mt-4">Not Connected</p>
+        <p class="mt-6">New user? <a href="register.html" class="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-700">Register</a></p>
+    </div>
+</body>
+</html>
