@@ -1,0 +1,86 @@
+<!-- register.html (Registration Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4/web3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Decentralized Voting - Register</title>
+    <script>
+        let selectedRole = "Voter";
+        let userAddress = "";
+
+        async function connectMetamask() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    userAddress = accounts[0];
+                    document.getElementById('walletAddress').innerText = `Wallet: ${userAddress}`;
+                    document.getElementById('walletAddress').classList.add("text-green-500");
+                } catch (error) {
+                    console.error(error);
+                    alert("Connection failed!");
+                }
+            } else {
+                alert('MetaMask is not installed. Please install it to use this feature.');
+            }
+        }
+        
+        function selectRole(role) {
+            selectedRole = role;
+            document.getElementById("voterBtn").classList.toggle("bg-white", role === "Voter");
+            document.getElementById("voterBtn").classList.toggle("text-black", role === "Voter");
+            document.getElementById("voterBtn").classList.toggle("shadow-lg", role === "Voter");
+            
+            document.getElementById("candidateBtn").classList.toggle("bg-white", role === "Candidate");
+            document.getElementById("candidateBtn").classList.toggle("text-black", role === "Candidate");
+            document.getElementById("candidateBtn").classList.toggle("shadow-lg", role === "Candidate");
+        }
+        
+        async function registerUser() {
+            if (!userAddress) {
+                alert("Please connect your MetaMask wallet first.");
+                return;
+            }
+            
+            alert(`Registering ${userAddress} as ${selectedRole}`);
+            
+            console.log("Simulated contract interaction: Storing", { address: userAddress, role: selectedRole });
+            
+            // Redirect to home page after successful registration
+            setTimeout(() => {
+                alert("Registration successful! Redirecting to home page...");
+                window.location.href = "home.html";
+            }, 500);
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 h-screen flex items-center justify-center text-white">
+    <div class="text-center">
+        <h1 class="text-3xl font-bold mb-8">REGISTER AS</h1>
+        
+        <div class="flex justify-center mb-6">
+            <button id="voterBtn" onclick="selectRole('Voter')" class="bg-white text-black font-semibold py-3 px-6 rounded-l-full focus:outline-none transition duration-300 hover:bg-gray-300 shadow-lg">Voter</button>
+            <button id="candidateBtn" onclick="selectRole('Candidate')" class="bg-gray-700 text-white font-semibold py-3 px-6 rounded-r-full focus:outline-none transition duration-300 hover:bg-gray-500 shadow-lg">Candidate</button>
+        </div>
+        
+        <!-- Connect Wallet Button -->
+        <button onclick="connectMetamask()" class="bg-white text-green-700 font-semibold py-3 px-16 rounded-full mb-4 transition duration-300 ease-in-out hover:bg-gray-300 shadow-lg flex items-center justify-center mx-auto">
+            <i class="fas fa-wallet text-green-700 mr-2"></i> Log in with MetaMask
+        </button>
+
+        
+        
+
+        <!-- Wallet Address Display (Added extra margin for spacing) -->
+        <p id="walletAddress" class="text-gray-300 mb-6">Not Connected</p>
+
+        <!-- Register Button -->
+        <button onclick="registerUser()" class="bg-white text-black font-semibold py-3 px-16 rounded-full focus:outline-none hover:bg-gray-300 transition duration-300 shadow-lg">REGISTER</button>
+        
+        <p class="mt-6">Already registered? <a href="index.html" class="underline text-blue-400">Log in</a></p>
+    </div>
+</body>
+</html>
