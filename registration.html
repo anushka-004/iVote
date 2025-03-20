@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply as Candidate - Registration</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            flex-direction: column;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 30px;
+    width: 100%; /* Ensures the navbar covers the full width */
+    box-sizing: border-box; /* Includes padding within the width */
+    position: relative; /* Fixed at the top, remains when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #4a0ca9;
+            border-radius: 5px;
+        }
+
+        /* Container for Form */
+        .container {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            border-radius: 20px;
+            box-sizing: border-box;
+            color: #333;
+            margin-top: 10px; /* Margin added to push content below the navbar */
+            margin-bottom: 40px; /* Margin at the bottom to give space */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select, textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        input[type="file"] {
+            font-size: 1rem;
+            padding: 10px;
+            background: #f8f8f8;
+            border: 2px dashed #ddd;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        button {
+            background-color: #6a11cb;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4a0ca9;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .footer a {
+            color: #00d1ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            form {
+                display: block;
+            }
+        }
+         
+        fieldset{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="voter-profile.html">profile</a>
+        <a href="results.html">Election Results</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Form Container -->
+    <div class="container">
+        <h1>Apply as Candidate</h1>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <!-- Personal Information Section -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="form-group">
+                    <label for="uniqueId">Unique ID</label>
+                    <input type="text" id="uniqueId" name="uniqueId" required placeholder="Enter your unique identification number">
+                </div>
+        
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+        
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+        
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+            </fieldset>
+        
+            <!-- Academic Information Section -->
+            <fieldset>
+                <legend>Academic Information</legend>
+                <div class="form-group">
+                    <label for="attendance">Attendance Criteria (Above 75%)</label>
+                    <input type="number" id="attendance" name="attendance" required min="75" max="100" placeholder="Enter your attendance percentage">
+                </div>
+        
+                <div class="form-group">
+                    <label for="extracurricular">Extracurricular Activities Certificates (Multiple Uploads Allowed)</label>
+                    <input type="file" id="extracurricular" name="extracurricular[]" accept="image/*, application/pdf" multiple>
+                </div>
+        
+                <div class="form-group">
+                    <label for="education">Educational Qualification Certificates (10th & 12th)</label>
+                    <input type="file" id="education" name="education[]" accept="image/*, application/pdf" multiple>
+                </div>
+            </fieldset>
+        
+            <!-- Political Information Section -->
+            <fieldset>
+                <legend>Political Information</legend>
+                <div class="form-group">
+                    <label for="party">Political Party</label>
+                    <input type="text" id="party" name="party" required placeholder="Enter the party you represent">
+                </div>
+        
+                <div class="form-group">
+                    <label for="position">Position Applying For</label>
+                    <select id="position" name="position" required>
+                        <option value="" disabled selected>Select the position</option>
+                        <option value="President">President</option>
+                        <option value="Vice President">Vice President</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="Treasurer">Treasurer</option>
+                    </select>
+                </div>
+            </fieldset>
+        
+            <!-- Additional Information Section -->
+            <fieldset>
+                <legend>Additional Information</legend>
+                <div class="form-group">
+                    <label for="candidatePhoto">Upload Photo</label>
+                    <input type="file" id="candidatePhoto" name="candidatePhoto" accept="image/*" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="biography">Brief Biography</label>
+                    <textarea id="biography" name="biography" rows="4" required placeholder="Tell us about yourself and your qualifications"></textarea>
+                </div>
+            </fieldset>
+        
+            <!-- Submit Button -->
+            <button type="submit">Submit Application</button>
+        </form>
+        
+        <!-- Already Applied Link -->
+        <div class="footer">
+            <p>Already applied? <a href="#">Check your status</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
