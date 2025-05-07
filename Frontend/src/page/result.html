@@ -92,8 +92,8 @@
         };
 
         function fetchResults() {
-            // Example fetch for the backend data (replace with actual API endpoint)
-            fetch('/getVotingResults')  // Backend team should implement this API
+           
+            fetch('/getVotingResults')  
                 .then(response => response.json())
                 .then(data => {
                     displayResults(data);
@@ -113,7 +113,6 @@
             let maxVotes = 0;
             let winner = '';
 
-            // Display each candidate and their votes
             results.forEach(result => {
                 const row = document.createElement('tr');
                 const candidateCell = document.createElement('td');
