@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming Elections | iVote</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
+
+header {
+    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    padding: 0.5rem;
+}
+
+#navbar nav {
+    background-color: #e0f7fa;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#navbar nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#navbar nav a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    color: #00796B;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#navbar nav a:hover {
+    background-color: #b2ebf2;
+    color: #004d40;
+}
+
+.section-title {
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+    color: #2C3E50;
+    font-size: 2.2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* --------- Revamped Card --------- */
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    position: relative;
+}
+
+/* Optional gradient overlay for image */
+.card img::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.3));
+}
+
+.card-content {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+    color: #1D3557;
+    font-size: 1.3rem;
+}
+
+.card-content p {
+    flex-grow: 1;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.card-content .date {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.8rem;
+}
+
+/* Fancy Button */
+.card-content .view-more {
+    align-self: flex-start;
+    background: linear-gradient(90deg, #00796B, #43A047);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.card-content .view-more::after {
+    content: '→';
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.card-content .view-more:hover {
+    background: linear-gradient(90deg, #004d40, #2e7d32);
+    transform: translateY(-2px);
+}
+
+.card-content .view-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* --------- Footer --------- */
+.footer {
+    background-color: #2C3E50;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00acc1;
+}
+
+/* --------- Responsive --------- */
+@media(max-width: 480px) {
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    #navbar nav ul {
+        gap: 0.5rem;
+    }
+
+    #navbar nav a {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>iVote - Online Voting Platform</h1>
+    </div>
+    <div id="navbar"> 
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="index.html">Login / Register</a></li>
+                <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav> 
+    </div> 
+</header>
+
+<div class="container">
+    <h2 class="section-title">Upcoming Elections</h2>
+
+    <div class="grid" id="electionGrid">
+        <!-- Cards will be inserted here dynamically by backend (placeholder) -->
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2025 iVote. All rights reserved.</p>
+    <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </div>
+</div>
+
+<script>
+// ----- Example dummy elections data (Backend team will replace with real data fetch) -----
+const dummyElections = [
+    {
+        title: "Student Council Elections 2025",
+        date: "May 20, 2025",
+        desc: "Elect representatives for your college’s student council and shape your campus future.",
+        image: "https://via.placeholder.com/400x200?text=Student+Council",
+        id: "election1"
+    },
+    {
+        title: "NGO Board Elections",
+        date: "June 10, 2025",
+        desc: "Participate in electing the new leadership board of your NGO for transparent decision-making.",
+        image: "https://via.placeholder.com/400x200?text=NGO+Board",
+        id: "election2"
+    },
+    {
+        title: "School Parent-Teacher Committee",
+        date: "July 5, 2025",
+        desc: "Parents and teachers collaborate — vote for your school’s PTC committee members.",
+        image: "https://via.placeholder.com/400x200?text=PTC+Elections",
+        id: "election3"
+    }
+    ,
+    {
+        title: "School Parent-Teacher Committee",
+        date: "July 5, 2025",
+        desc: "Parents and teachers collaborate — vote for your school’s PTC committee members.",
+        image: "https://via.placeholder.com/400x200?text=PTC+Elections",
+        id: "election3"
+    }
+    ,
+    {
+        title: "School Parent-Teacher Committee",
+        date: "July 5, 2025",
+        desc: "Parents and teachers collaborate — vote for your school’s PTC committee members.",
+        image: "https://via.placeholder.com/400x200?text=PTC+Elections",
+        id: "election3"
+    }
+    ,
+    {
+        title: "School Parent-Teacher Committee",
+        date: "July 5, 2025",
+        desc: "Parents and teachers collaborate — vote for your school’s PTC committee members.",
+        image: "https://via.placeholder.com/400x200?text=PTC+Elections",
+        id: "election3"
+    }
+    
+];
+
+// ---- Render elections into cards ----
+const grid = document.getElementById('electionGrid');
+
+dummyElections.forEach(election => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+        <img src="${election.image}" alt="${election.title}">
+        <div class="card-content">
+            <h3>${election.title}</h3>
+            <p class="date">${election.date}</p>
+            <p>${election.desc}</p>
+            <a href="#" class="view-more" onclick="viewElection('${election.id}')">View Details</a>
+        </div>
+    `;
+    grid.appendChild(card);
+});
+
+// ---- Store selected election in localStorage (for backend use) ----
+function viewElection(electionId) {
+    localStorage.setItem('selectedElectionId', electionId);
+    alert('Election selected: ' + electionId);
+
+    // Backend team can use selectedElectionId to load details on next page
+    // window.location.href = 'electionDetails.html';
+}
+
+// ---- Store static user (for example) ----
+localStorage.setItem('userName', 'Anushka');
+console.log('Stored User:', localStorage.getItem('userName'));
+
+// ---- Placeholder for Backend Integration ----
+// Fetch real elections list from database and replace dummyElections
+// Example (Backend):
+// fetch('/api/upcomingElections').then(res => res.json()).then(data => render(data));
+</script>
+
+</body>
+</html>

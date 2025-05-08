@@ -5,145 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}      
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            background-size: cover;
-            margin: 0;
-            color: white;
-            text-align: justify;
-        }
+header {
+    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-        
-        .container1 {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
+header h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    padding: 0.5rem;
+}
 
-        
-        header {
-            background: #2C3E50;
-            color: #fff;
-            padding: 1rem 0;
-        }
+#navbar nav {
+    background-color: #e0f7fa;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-        header h1 {
-            text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2.125rem);
-            padding: 0.5rem;
-        }
-         
-        #navbar nav {
-            background-color: #bdeaeb;
-            padding: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+#navbar nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
 
-        #navbar nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
+#navbar nav a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    color: #00796B;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        #navbar nav a {
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            color: #1D3557;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        #navbar nav a:hover {
-            background-color: #a5d6d7;
-        }
+#navbar nav a:hover {
+    background-color: #b2ebf2;
+    color: #004d40;
+}
 
 
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-top: 80px;
-            padding-bottom: 60px;
-        }
 
-        .profile-image {
-            margin-bottom: 30px;
-        }
 
-        .profile-image img {
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.6);
-            width: 180px;
-            height: 180px;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
 
-        h1 {
-            color: white;
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+.profile-image {
+    margin-bottom: 30px;
+}
 
-        .cards-wrapper {
+.profile-image img {
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.6);
+    width: 180px;
+    height: 180px;
+}
+
+h1 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Updated Cards Styling */
+.cards-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px; /* reduced gap for smaller cards */
-    max-width: 700px; /* narrower max width to make cards smaller */
-    width: 100%; /* Ensure the grid doesn't exceed the viewport */
-    margin-left: 100px;
-    box-sizing: border-box; /* Include padding in width calculation */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 15px; /* reduced padding */
-    max-width: 250px; /* narrower card width */
-    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 20px;
     text-align: center;
     color: rgb(20, 15, 15);
     font-family: 'Poppins', sans-serif;
     backdrop-filter: blur(10px);
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    aspect-ratio: 1; /* Ensures square shape */
+    max-width: 300px; /* Card width limit */
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .card img {
     width: 100%;
-    max-height: 150px; /* reduced image height for better fit */
-    object-fit: cover; /* ensures image stays within the card */
+    height: 100%; /* Ensures image fits the square card */
+    object-fit: cover;
     border-radius: 15px;
 }
 
 .card h3 {
-    font-size: 18px; /* smaller font size */
-    margin-top: 10px;
+    font-size: 20px;
+    margin-top: 12px;
     margin-bottom: 8px;
 }
 
 .card p {
-    font-size: 14px; /* smaller font size for text */
-}
-
-.btn-container {
-    margin-top: 15px; /* adjusted space between text and button */
-}
-
-.btn-container a {
-    padding: 8px 16px; /* smaller buttons */
-    font-size: 14px; /* smaller font size */
+    font-size: 14px;
 }
 
 /* Make cards responsive */
@@ -154,48 +149,74 @@
     }
 
     .card {
-        width: 100%; /* full-width on mobile */
+        width: 100%;
     }
 }
 
+.btn-container {
+    margin-top: 15px;
+}
+
+.btn-container a {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 5px;
+}
 
 .btn-container a:first-child {
-  background-color: transparent;
-  border: 1px solid rgba(17, 12, 12, 0.5);
- border-radius :30px ;
+    background-color: transparent;
+    border: 1px solid rgba(17, 12, 12, 0.5);
+    border-radius: 30px;
 }
 
 .btn-container a:last-child {
-  background-color: #00d1ff; /* bright blue color */
-  color: white;
+    background-color: #00d1ff;
+    color: white;
 }
 
 .btn-container a:hover {
-  opacity: 0.8;
-  cursor: pointer;
+    opacity: 0.8;
+    cursor: pointer;
 }
 
-
 .footer {
-            background-color: #000000;
-            color: white;
-            padding: 2rem 0;
-            margin-top: 2rem;
-            text-align: center;
-        }
+    background-color: #000000;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    text-align: center;
+}
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
 
-        .social-links a {
-            color: white;
-            text-decoration: none;
-        }
+.social-links a {
+    color: white;
+    text-decoration: none;
+}
+@media(max-width: 480px) {
+    
+
+    #navbar nav ul {
+        gap: 0.5rem;
+    }
+
+    #navbar nav a {
+        padding: 0.4rem 0.8rem;
+    }
+
+    
+}
+
     </style>
 </head>
 <body>
@@ -246,7 +267,7 @@
                 <h3>Upcoming Election</h3>
                 <p>Stay informed about upcoming elections and prepare to cast your vote for the next candidates.</p>
                 <div class="btn-container">
-                    <a href="#">Details</a>
+                    <a href="upElec.html">Details</a>
                     
                 </div>
             </div>
@@ -257,7 +278,7 @@
                 <h3>Previous Elections</h3>
                 <p>Review the outcomes and details of previous elections to see past candidates and results.</p>
                 <div class="btn-container">
-                    <a href="#">Details</a>
+                    <a href="prev.html">Details</a>
                     
                 </div>
                  

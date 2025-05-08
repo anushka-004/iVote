@@ -6,50 +6,59 @@
     <title>Apply as Candidate - Registration</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; 
-            flex-direction: column;
-        }
-
-        /* Navigation Bar Styling */
-        nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 15px 30px;
-    width: 100%; 
-    box-sizing: border-box; 
-    position: relative; 
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}      
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
 }
 
+header {
+    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            transition: background-color 0.3s;
-        }
+header h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    padding: 0.5rem;
+}
 
-        nav a:hover {
-            background-color: #4a0ca9;
-            border-radius: 5px;
-        }
+#navbar nav {
+    background-color: #e0f7fa;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+#navbar nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#navbar nav a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    color: #00796B;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#navbar nav a:hover {
+    background-color: #b2ebf2;
+    color: #004d40;
+}
        
         .container {
             background: #fff;
@@ -166,13 +175,22 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="home.html">Home</a>
-        <a href="voter-profile.html">profile</a>
-        <a href="results.html">Election Results</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+   
+    <header>
+        <div class="container1">
+            <h1>iVote  -   Online Voting Plateform</h1>
+        </div>
+        <div id="navbar"> 
+           <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </nav>
+            </div>
+    </header>
 
     <!-- Form Container -->
     <div class="container">

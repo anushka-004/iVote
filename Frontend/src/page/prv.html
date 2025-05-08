@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Previous Elections - iVote Online Voting Platform</title>
+<style>
+/* --- Reset and Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
+
+/* --- Navbar Styles --- */
+header {
+    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+header h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+#navbar nav {
+    background-color: #e0f7fa;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#navbar nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+#navbar nav a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    color: #00796B;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+#navbar nav a:hover {
+    background-color: #b2ebf2;
+    color: #004d40;
+}
+
+/* --- Previous Elections Section --- */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2C3E50;
+}
+.election-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.election-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.election-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.election-card h3 {
+    margin-bottom: 10px;
+    color: #00796B;
+}
+.election-card p {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+.election-card .results {
+    margin-top: 10px;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 5px;
+}
+.election-card .results strong {
+    color: #004d40;
+}
+
+/* --- Footer Styles --- */
+footer {
+    background-color: #2C3E50;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+footer p {
+    font-size: 1em;
+}
+.social-icons {
+    margin-top: 20px;
+}
+.social-icons a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+.social-icons a:hover {
+    color: #00acee;
+}
+
+/* --- Responsive Navbar Adjustment --- */
+@media (max-width: 600px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>iVote - Online Voting Platform</h1>
+    </div>
+    <div id="navbar">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="index.html">Login / Register</a></li>
+                <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="previous-elections">
+    <h2>Previous Elections</h2>
+    <p>Explore the results of our past elections conducted securely and transparently on iVote.</p>
+
+    <div class="election-grid">
+        <div class="election-card">
+            <h3>2024 Student Council Election</h3>
+            <p><strong>Date:</strong> March 15, 2024</p>
+            <p><strong>Position:</strong> President</p>
+            <div class="results">
+                <strong>Winner:</strong> Priya Sharma (62% votes)
+            </div>
+        </div>
+
+        <div class="election-card">
+            <h3>2023 Tech Club Election</h3>
+            <p><strong>Date:</strong> October 5, 2023</p>
+            <p><strong>Position:</strong> Chairperson</p>
+            <div class="results">
+                <strong>Winner:</strong> Ankit Verma (54% votes)
+            </div>
+        </div>
+
+        <div class="election-card">
+            <h3>2023 Cultural Committee</h3>
+            <p><strong>Date:</strong> January 25, 2023</p>
+            <p><strong>Position:</strong> Coordinator</p>
+            <div class="results">
+                <strong>Winner:</strong> Sneha Reddy (70% votes)
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 iVote - Online Voting Platform. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" title="Follow us on Instagram">
+            <i class="fa fa-instagram"></i> Instagram
+        </a>
+        <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
+            <i class="fa fa-twitter"></i> Twitter
+        </a>
+        <a href="https://www.facebook.com" target="_blank" title="Follow us on Facebook">
+            <i class="fa fa-facebook"></i> Facebook
+        </a>
+    </div>
+</footer>
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

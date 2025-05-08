@@ -11,60 +11,62 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e9f1f3;
-            line-height: 1.6;
-        }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}      
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
 
-       
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+header {
+    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    padding: 0.5rem;
+}
+
+#navbar nav {
+    background-color: #e0f7fa;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#navbar nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#navbar nav a {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    color: #00796B;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#navbar nav a:hover {
+    background-color: #b2ebf2;
+    color: #004d40;
+}
 
         
-        header {
-            background: #2C3E50;
-            color: #fff;
-            padding: 1rem 0;
-        }
-
-        header h1 {
-            text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2.125rem);
-            padding: 0.5rem;
-        }
-
-        #navbar nav {
-            background-color: #bdeaeb;
-            padding: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        #navbar nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        #navbar nav a {
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            color: #1D3557;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        #navbar nav a:hover {
-            background-color: #a5d6d7;
-        }
-
+       
       
         .video-section {
             height: 60vh;
@@ -147,24 +149,6 @@
         }
 
       
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-
-            #navbar nav ul {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .image-slider {
-                height: 300px;
-            }
-
-            .content {
-                padding: 1rem;
-            }
-        }
 
         @media (max-width: 480px) {
             header h1 {
@@ -214,7 +198,7 @@
         <div id="navbar"> 
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.html">Home</a></li>
                     <li><a href="aboutUs.html">About Us</a></li>
                     <li><a href="index.html">login / Register </a></li>
                     <li><a href="User_Guidelines.html">User Guidelines</a></li>

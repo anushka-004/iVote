@@ -336,10 +336,38 @@
             
             idsListElement.appendChild(ul);
         }
-        
-        // Initialize the app when the page loads
+
+        // Add event listeners for Enter key to trigger buttons
         window.onload = function() {
             initializeStorage();
+
+            // Event listener for admin password input (Enter key)
+            document.getElementById('adminPassword').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    authenticateAdmin();
+                }
+            });
+
+            // Event listener for position title input (Enter key)
+            document.getElementById('positionTitle').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    createVotingPosition();
+                }
+            });
+
+            // Event listener for candidates input (Enter key)
+            document.getElementById('candidatesList').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    createVotingPosition();
+                }
+            });
+
+            // Event listener for student ID input (Enter key)
+            document.getElementById('newStudentId').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    addStudentId();
+                }
+            });
         };
     </script>
 </body>

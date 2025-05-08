@@ -220,10 +220,25 @@
                 messageElement.classList.remove("hidden");
             }
         }
-        
-        // Initialize when the page loads
+
+        // Add event listeners to trigger actions when Enter key is pressed
         window.onload = function() {
-            // Clear any previous votes if needed
+            // Event listener for student ID input (Enter key)
+            document.getElementById('studentId').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    authenticateStudent();
+                }
+            });
+
+            // Event listener for voting submit button (Enter key)
+            const votingButtons = document.querySelectorAll('input[type="radio"]');
+            votingButtons.forEach(input => {
+                input.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        submitVote();
+                    }
+                });
+            });
         };
     </script>
 </body>
