@@ -3,164 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iVote</title>
+    <title>iVote - Online Voting Platform</title>
     <style>
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    line-height: 1.6;
-}      
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-}
-
-header {
-    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
-    color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-header h1 {
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    padding: 0.5rem;
-}
-
-#navbar nav {
-    background-color: #e0f7fa;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#navbar nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-#navbar nav a {
-    text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    color: #00796B;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#navbar nav a:hover {
-    background-color: #b2ebf2;
-    color: #004d40;
-}
-
-        
-       
-      
-        .video-section {
-            height: 60vh;
-            max-height: 600px;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9f1f3;
+            line-height: 1.6;
         }
 
-        video {
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header styling to match screenshot */
+        header {
+            background-color: #1a3c64;
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-nav {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        
+        .logo span {
+            color: #4db8ff;
+        }
+        
+        /* Navigation styling to match screenshot */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            padding: 1.5rem 1.2rem;
+            color: #fff;
+            font-weight: 500;
+            display: block;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        /* Hero section */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            max-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: 1;
         }
 
-       
-        #image {
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 60, 100, 0.6);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: #4db8ff;
+            color: #1a3c64;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features section */
+        .features-section {
+            padding: 3rem 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1a3c64;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #f8f9fa;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4db8ff;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #1a3c64;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Content section */
+        .content-section {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
             margin: 2rem 0;
-            justify-content: center;
         }
 
         .image-slider {
+            flex: 1;
+            min-width: 300px;
             position: relative;
-            width: 300px;
             height: 400px;
-            max-width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .slider-image {
             position: absolute;
-            top: 230px;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0;
             transition: opacity 2s ease-in-out;
-        }
-
-        .content {
-            flex: 1;
-            padding: 2rem;
-            background: #ECF0F1;
-            border: 3px solid #2C2C2C;
-            margin: 1rem 0;
             border-radius: 8px;
         }
 
-        .content h2 {
-            color: #333;
-            margin-bottom: 1rem;
+        .content-text {
+            flex: 2;
+            min-width: 300px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .content p {
+        .content-text h2 {
+            color: #1a3c64;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #4db8ff;
+            padding-bottom: 0.5rem;
+        }
+
+        .content-text p {
             margin-bottom: 1.5rem;
         }
 
-       
-        .footer {
-            background-color: #000000;
+        .content-text ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ section */
+        .faq-section {
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            background-color: #fff;
+            color: #1a3c64;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            background-color: #f1f1f1;
+            padding: 1rem;
+            display: none;
+        }
+
+        /* Footer styling to match registration page */
+        footer {
+            background-color: #1a3c64;
             color: white;
             padding: 2rem 0;
             margin-top: 2rem;
-            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4db8ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #4db8ff;
         }
 
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 1rem;
-            flex-wrap: wrap;
         }
 
         .social-links a {
-            color: white;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
         }
 
-      
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .video-section {
-                height: 40vh;
-            }
+        .social-links a:hover {
+            background-color: #4db8ff;
         }
 
-     
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 1s ease-out;
+        }
+
         @keyframes slideShow1 {
             0%, 20% { opacity: 1; }
             25%, 100% { opacity: 0; }
@@ -185,114 +412,353 @@ header h1 {
         .slider-image:nth-child(2) { animation: slideShow2 16s infinite; }
         .slider-image:nth-child(3) { animation: slideShow3 16s infinite; }
         .slider-image:nth-child(4) { animation: slideShow4 16s infinite; }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .content-section {
+                flex-direction: column;
+            }
+            
+            .image-slider {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav .container {
+                position: relative;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            nav ul {
+                position: absolute;
+                flex-direction: column;
+                width: 100%;
+                top: 100%;
+                left: 0;
+                background-color: #1a3c64;
+                display: none;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav a {
+                text-align: center;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .hero-section {
+                height: 50vh;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .hero-section {
+                height: 40vh;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .feature-card {
+                padding: 1rem;
+            }
+        }
     </style>
-</head>
-</body>
-</html>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>iVote  -   Online Voting Plateform</h1>
+        <div class="header-nav">
+            <div class="container">
+                <a href="#" class="logo">i<span>Vote</span></a>
+                <nav>
+                    <ul id="nav-menu">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="events.html">Results</a></li>
+                        <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                        <li><a href="aboutUs.html">About Us</a></li>
+                        <li><a href="index.html">Login / Register</a></li>
+                        <li><a href="contactUs.html">Contact</a></li>
+                    </ul>
+                    <button class="hamburger">☰</button>
+                </nav>
+            </div>
         </div>
-        <div id="navbar"> 
-            <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="aboutUs.html">About Us</a></li>
-                    <li><a href="index.html">login / Register </a></li>
-                    <li><a href="User_Guidelines.html">User Guidelines</a></li>
-                    <li><a href="#">Contact</a></li>
-                    
-                </ul>
-            </nav> 
-         </div> 
     </header>
 
-    <div class="container">
-        <div class="video-section">
-            <video width="100%" height="auto" autoplay muted  loop playsinline>
-                <source src="home vid.mp4" type="video/mp4" >
-            </video>
-            </div>
-
-        <div id="image">
-            <div class="image-slider">
-                <img src="home gif.jpeg" alt="loading" class="slider-image" width="300px" height="400px">
-                <img src="home2 gif.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
-                <img src="home3.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
-                <img src="home4.jpeg" alt="loading" class="slider-image"  width="300px"height="400px" >
-            </div>
-            
-       
-        <div class="content"> 
-            <h2>i-Voting</h2>
-            <p>Welcome to the future of voting! Our platform makes it easier than ever for educational institutions, non-government organizations, and community groups to conduct secure and efficient elections. Whether you’re a student, a teacher, a member, or a participant in any organization, your vote matters, and we are here to make sure it’s counted.</p>
-
-            <p>Why Choose Us?
-
-                Security First: We implement advanced encryption and data protection measures to ensure that every vote is secure and cannot be tampered with.<br>
-                Transparency: Our system is designed to offer full transparency in the voting process, with real-time vote tracking and post-election audits available for your peace of mind.<br>
-                Easy to Use: Voting has never been simpler. Whether you’re on a desktop, tablet, or mobile device, our platform is optimized for an intuitive and smooth experience.<br>
-                Anywhere, Anytime: You can participate in voting from wherever you are – at home, at work, or on the go. No need to be physically present to make your voice heard.
-                For All Organizations: We cater to schools, colleges, clubs, and other non-government organizations. If you need a fair, modern solution for decision-making, we've got you covered..</p>
-
-            <h2>Who can use e-Voting facility?</h2>
-            <p>Any company which wants to facilitate e-Voting can use iVote. This system is available for all . <a href="#">Click here for details.</a></p>
-
-            <h2>How can I cast my vote online?</h2>
-            <p>There are multiple options to cast your vote online through:</p>
-            <ul>
-                <li>iVote's  e-Voting Portal</li>
-              
-            </ul>
-            
-        
-    </div>
-    </div>
-</div>
-
-    <div class="footer">
-        <p>© 2025 iVote. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+    <div class="hero-section">
+        <video autoplay muted loop playsinline>
+            <source src="home vid.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content animated">
+            <h2>Your Voice Matters, Make It Count</h2>
+            <p>iVote brings secure, transparent, and easy voting to your organization, school, or community.</p>
+            <a href="index.html" class="cta-button">Start Voting Now</a>
         </div>
     </div>
 
+    <div class="container">
+        <section class="features-section animated">
+            <h2 class="section-title">Why Choose iVote?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Security First</h3>
+                    <p>Advanced encryption and robust data protection to keep your vote secure and private.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3 class="feature-title">Transparency</h3>
+                    <p>Real-time tracking and post-election audits ensure trustworthy results.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Ease of Use</h3>
+                    <p>Mobile-friendly, intuitive platform accessible on any device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Vote Anywhere</h3>
+                    <p>Cast your vote from home, work, or anywhere with internet access.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section animated">
+            <div class="image-slider">
+                <img src="home gif.jpeg" alt="Online voting" class="slider-image">
+                <img src="home2 gif.jpeg" alt="Secure voting" class="slider-image">
+                <img src="home3.jpeg" alt="Mobile voting" class="slider-image">
+                <img src="home4.jpeg" alt="Easy voting" class="slider-image">
+            </div>
+
+            <div class="content-text">
+                <h2>i-Voting: The Future of Democracy</h2>
+                <p>Welcome to the future of voting! Our platform makes it easier than ever for educational institutions, NGOs, and community groups to conduct secure and efficient elections. Whether you're a student, teacher, member, or participant in any organization, your vote matters, and we ensure it's counted.</p>
+
+                <h2>Key Benefits</h2>
+                <ul>
+                    <li><strong>Enhanced Security:</strong> Multi-layer encryption and authentication protocols.</li>
+                    <li><strong>Cost Effective:</strong> Eliminate printing, staffing, and venue costs.</li>
+                    <li><strong>Greater Participation:</strong> Accessible voting increases turnout rates.</li>
+                    <li><strong>Instant Results:</strong> Automated counting provides immediate outcomes.</li>
+                    <li><strong>Environmentally Friendly:</strong> Paperless voting reduces waste.</li>
+                </ul>
+
+                <h2>Who Can Use iVote?</h2>
+                <p>Any organization seeking a reliable and secure e-Voting system can use iVote:</p>
+                <ul>
+                    <li>Educational institutions (schools, colleges, universities)</li>
+                    <li>Student unions and associations</li>
+                    <li>Professional organizations and societies</li>
+                    <li>Non-profit organizations</li>
+                    <li>Community groups and clubs</li>
+                    <li>Corporate board elections</li>
+                </ul>
+                <p><a href="User_Guidelines.html" style="color: #4db8ff; font-weight: bold;">Click here for detailed eligibility information</a></p>
+            </div>
+        </section>
+
+        <section class="faq-section animated">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How can I cast my vote online? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Casting your vote is simple:</p>
+                        <ol>
+                            <li>Log in to your iVote account</li>
+                            <li>Select the active election</li>
+                            <li>Review the candidates or options</li>
+                            <li>Make your selection</li>
+                            <li>Confirm your vote</li>
+                        </ol>
+                        <p>You'll receive a confirmation receipt after your vote is successfully cast.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is online voting secure? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! iVote employs industry-standard security measures including:</p>
+                        <ul>
+                            <li>End-to-end encryption</li>
+                            <li>Two-factor authentication</li>
+                            <li>Blockchain technology for immutable records</li>
+                            <li>Regular security audits</li>
+                        </ul>
+                        <p>Your vote remains private and secure throughout the entire process.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I register as a candidate? <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To register as a candidate:</p>
+                        <ol>
+                            <li>Click on "Login / Register" in the navigation menu</li>
+                            <li>Create an account or log in to your existing account</li>
+                            <li>Navigate to "Apply as Candidate" section</li>
+                            <li>Complete the application form with your personal, academic, and political information</li>
+                            <li>Submit your application for review</li>
+                        </ol>
+                        <p>Once your candidacy is approved, you'll be notified and listed in the respective election.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About iVote</h3>
+                    <p>iVote is a secure online voting platform designed to make democratic processes accessible, transparent, and efficient for all types of organizations.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="aboutUs.html">About Us</a></li>
+                        <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@ivote.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 iVote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.slider-image');
-        const totalImages = images.length;
-    
-        function showNextImage() {
-            images[currentIndex].style.opacity = 0;
-            currentIndex = (currentIndex + 1) % totalImages;
-            images[currentIndex].style.opacity = 1;
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
         }
-    
-        setInterval(showNextImage, 4000); 
-        images[currentIndex].style.opacity = 1;
-
-        localStorage.setItem('userName', 'Anushka');
-        console.log('Stored User:', localStorage.getItem('userName'));
-
-       
-navLinks.forEach(link => {
-
-    if (!link.href.includes('login.html')) {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert(`Navigating to ${link.textContent}`);
+        
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.faq-question').forEach(item => {
+                    item.querySelector('span').textContent = '+';
+                });
+                
+                // Open clicked one if it was closed
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    question.querySelector('span').textContent = '-';
+                }
+            });
         });
-    }
-});
-
-
-
-        // Placeholder for Backend Integration
-       
+        
+        // Show first image initially
+        document.querySelectorAll('.slider-image')[0].style.opacity = 1;
+        
+        // Store user session info
+        if (localStorage) {
+            localStorage.setItem('userName', 'Anushka');
+            console.log('Stored User:', localStorage.getItem('userName'));
+        }
+        
+        // Add animation when scrolling
+        const animatedElements = document.querySelectorAll('.animated');
+        
+        function checkScroll() {
+            animatedElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initially set elements to invisible
+        animatedElements.forEach(element => {
+            if (element !== document.querySelector('.hero-content')) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            }
+        });
+        
+        // Check on scroll and on load
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
     </script>
 </body>
 </html>

@@ -5,283 +5,671 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply as Candidate - Registration</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
-        body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    line-height: 1.6;
-}      
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-}
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-header {
-    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
-    color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-header h1 {
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    padding: 0.5rem;
-}
-
-#navbar nav {
-    background-color: #e0f7fa;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#navbar nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-#navbar nav a {
-    text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    color: #00796B;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#navbar nav a:hover {
-    background-color: #b2ebf2;
-    color: #004d40;
-}
-       
-        .container {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 900px;
-            padding: 40px;
-            border-radius: 20px;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #e9f1f3;
             color: #333;
-            margin-top: 10px; 
-            margin-bottom: 40px; 
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .header-container {
+            width: 100%;
+            background: linear-gradient(to right, #1a3a5f, #2c5282);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo span {
+            color: #70b6ff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .main-content {
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
         }
 
+        .container {
+            background: #fff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            width: 100%;
+            max-width: 900px;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+        
         h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #1a3a5f;
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #1a3a5f, #70b6ff);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            margin-top: 20px;
+            margin-top: 2rem;
+            gap: 1.5rem;
+        }
+
+        fieldset {
+            border: none;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background-color: #f9fbfd;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        fieldset:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        legend {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1a3a5f;
+            padding: 0 1rem;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.2rem;
             display: flex;
             flex-direction: column;
         }
 
         label {
             font-weight: 500;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 0.5rem;
+            color: #2c5282;
+            display: flex;
+            align-items: center;
         }
 
         input, select, textarea {
-            padding: 15px;
+            padding: 0.8rem;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            color: #333;
             width: 100%;
             box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #70b6ff;
+            box-shadow: 0 0 0 2px rgba(112, 182, 255, 0.2);
         }
 
         textarea {
             resize: none;
-            height: 100px;
+            min-height: 100px;
         }
 
         input[type="file"] {
-            font-size: 1rem;
-            padding: 10px;
-            background: #f8f8f8;
-            border: 2px dashed #ddd;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border: 2px dashed #b0c4de;
             cursor: pointer;
             text-align: center;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="file"]:hover {
+            background: #f0f4f8;
+            border-color: #70b6ff;
         }
 
         button {
-            background-color: #6a11cb;
+            background: linear-gradient(135deg, #6a11cb 0%, #4a0ca9 100%);
             color: white;
-            padding: 12px 25px;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            align-self: center;
+            box-shadow: 0 4px 10px rgba(74, 12, 169, 0.2);
         }
 
         button:hover {
-            background-color: #4a0ca9;
+            background: linear-gradient(135deg, #5d10b3 0%, #3e0a8a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(74, 12, 169, 0.25);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .input-group .form-group {
+            flex: 1;
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 2rem;
             text-align: center;
             font-size: 1rem;
-            color: #fff;
+            color: #555;
         }
 
         .footer a {
-            color: #00d1ff;
+            color: #6a11cb;
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         .footer a:hover {
+            color: #4a0ca9;
             text-decoration: underline;
         }
 
+        .required::after {
+            content: "*";
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .file-upload-info {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                max-width: 100%;
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
             }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            form {
+            
+            .menu-toggle {
                 display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1.2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            fieldset {
+                padding: 1rem;
             }
         }
-         
-        fieldset{
-            margin-top: 10px;
+
+        /* Form progress indicator */
+        .progress-container {
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .progress-steps::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            background: #ddd;
+            z-index: 0;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 3px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+        
+        .step-text {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+        
+        .active .step-circle {
+            border-color: #1a3a5f;
+            background-color: #1a3a5f;
+            color: white;
+        }
+        
+        .active .step-text {
+            color: #1a3a5f;
+            font-weight: 500;
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: #70b6ff;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // Form validation
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let isValid = true;
+                const requiredInputs = form.querySelectorAll('[required]');
+                
+                requiredInputs.forEach(input => {
+                    if (input.value.trim() === '') {
+                        isValid = false;
+                        input.style.borderColor = '#e74c3c';
+                        
+                        // Add error message if it doesn't exist
+                        let errorMsg = input.parentElement.querySelector('.error-message');
+                        if (!errorMsg) {
+                            errorMsg = document.createElement('span');
+                            errorMsg.className = 'error-message';
+                            errorMsg.style.color = '#e74c3c';
+                            errorMsg.style.fontSize = '0.8rem';
+                            errorMsg.style.marginTop = '5px';
+                            errorMsg.textContent = 'This field is required';
+                            input.parentElement.appendChild(errorMsg);
+                        }
+                    } else {
+                        input.style.borderColor = '#ddd';
+                        // Remove error message if it exists
+                        const errorMsg = input.parentElement.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    }
+                });
+                
+                if (isValid) {
+                    alert("Thank you for your application! We'll review your information and get back to you soon.");
+                    // In a real application, you would submit the form here
+                    // form.submit();
+                } else {
+                    alert("Please fill in all required fields before submitting.");
+                }
+            });
+            
+            // Clean up error messages when input changes
+            const allInputs = form.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.borderColor = '#ddd';
+                    const errorMsg = this.parentElement.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.remove();
+                    }
+                });
+            });
+            
+            // Auto-resize textarea
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-
-   
-    <header>
-        <div class="container1">
-            <h1>iVote  -   Online Voting Plateform</h1>
-        </div>
-        <div id="navbar"> 
-           <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="logout.html">Logout</a></li>
-                </ul>
-            </nav>
-            </div>
+    <!-- Navigation Bar -->
+    <header class="header-container">
+        <nav class="navbar">
+            <a href="home.html" class="logo">i<span>Vote</span></a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="result.html">Results</a></li>
+                <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="index.html">Login / Register</a></li>
+                <li><a href="contactUs.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Form Container -->
-    <div class="container">
-        <h1>Apply as Candidate</h1>
-        <form action="#" method="POST" enctype="multipart/form-data">
-            <!-- Personal Information Section -->
-            <fieldset>
-                <legend>Personal Information</legend>
-                <div class="form-group">
-                    <label for="uniqueId">Unique ID</label>
-                    <input type="text" id="uniqueId" name="uniqueId" required placeholder="Enter your unique identification number">
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Apply as Candidate</h1>
+            
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-step active">
+                        <div class="step-circle">1</div>
+                        <div class="step-text">Personal Info</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle">2</div>
+                        <div class="step-text">Academic Info</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle">3</div>
+                        <div class="step-text">Political Info</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-circle">4</div>
+                        <div class="step-text">Additional Info</div>
+                    </div>
                 </div>
-        
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                </div>
-        
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                </div>
-        
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                </div>
-            </fieldset>
-        
-            <!-- Academic Information Section -->
-            <fieldset>
-                <legend>Academic Information</legend>
-                <div class="form-group">
-                    <label for="attendance">Attendance Criteria (Above 75%)</label>
-                    <input type="number" id="attendance" name="attendance" required min="75" max="100" placeholder="Enter your attendance percentage">
-                </div>
-        
-                <div class="form-group">
-                    <label for="extracurricular">Extracurricular Activities Certificates (Multiple Uploads Allowed)</label>
-                    <input type="file" id="extracurricular" name="extracurricular[]" accept="image/*, application/pdf" multiple>
-                </div>
-        
-                <div class="form-group">
-                    <label for="education">Educational Qualification Certificates (10th & 12th)</label>
-                    <input type="file" id="education" name="education[]" accept="image/*, application/pdf" multiple>
-                </div>
-            </fieldset>
-        
-            <!-- Political Information Section -->
-            <fieldset>
-                <legend>Political Information</legend>
-                <div class="form-group">
-                    <label for="party">Political Party</label>
-                    <input type="text" id="party" name="party" required placeholder="Enter the party you represent">
-                </div>
-        
-                <div class="form-group">
-                    <label for="position">Position Applying For</label>
-                    <select id="position" name="position" required>
-                        <option value="" disabled selected>Select the position</option>
-                        <option value="President">President</option>
-                        <option value="Vice President">Vice President</option>
-                        <option value="Secretary">Secretary</option>
-                        <option value="Treasurer">Treasurer</option>
-                    </select>
-                </div>
-            </fieldset>
-        
-            <!-- Additional Information Section -->
-            <fieldset>
-                <legend>Additional Information</legend>
-                <div class="form-group">
-                    <label for="candidatePhoto">Upload Photo</label>
-                    <input type="file" id="candidatePhoto" name="candidatePhoto" accept="image/*" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="biography">Brief Biography</label>
-                    <textarea id="biography" name="biography" rows="4" required placeholder="Tell us about yourself and your qualifications"></textarea>
-                </div>
-            </fieldset>
-        
-            <!-- Submit Button -->
-            <button type="submit">Submit Application</button>
-        </form>
-        
-        <!-- Already Applied Link -->
-        <div class="footer">
-            <p>Already applied? <a href="#">Check your status</a></p>
+            </div>
+            
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <!-- Personal Information Section -->
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    
+                    <div class="input-group">
+                        <div class="form-group">
+                            <label for="uniqueId" class="required">Unique ID</label>
+                            <input type="text" id="uniqueId" name="uniqueId" required placeholder="Enter your unique ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="studentId" class="required">Student ID</label>
+                            <input type="text" id="studentId" name="studentId" required placeholder="Enter your student ID">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob" class="required">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="required">Permanent Address</label>
+                        <textarea id="address" name="address" rows="3" required placeholder="Enter your permanent address"></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Academic Information Section -->
+                <fieldset>
+                    <legend>Academic Information</legend>
+                    
+                    <div class="form-group">
+                        <label for="attendance" class="required">
+                            Attendance Criteria
+                            <div class="tooltip">?
+                                <span class="tooltip-text">Must be above 75% to qualify</span>
+                            </div>
+                        </label>
+                        <input type="number" id="attendance" name="attendance" required min="75" max="100" placeholder="Enter your attendance percentage">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="extracurricular" class="required">Extracurricular Activities</label>
+                        <input type="text" id="extracurricular" name="extracurricular" required placeholder="Enter extracurricular activities name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="extracurricularFile">Upload Certificates</label>
+                        <input type="file" id="extracurricularFile" name="extracurricularFile[]" accept="image/*, application/pdf" multiple>
+                        <div class="file-upload-info">Multiple uploads allowed (JPG, PNG, PDF)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="education" class="required">Educational Qualification Certificates</label>
+                        <input type="file" id="education" name="education[]" accept="image/*, application/pdf" multiple required>
+                        <div class="file-upload-info">10th & 12th certificates required (JPG, PNG, PDF)</div>
+                    </div>
+                </fieldset>
+
+                <!-- Political Information Section -->
+                <fieldset>
+                    <legend>Political Information</legend>
+                    
+                    <div class="form-group">
+                        <label for="party" class="required">Political Party</label>
+                        <input type="text" id="party" name="party" required placeholder="Enter the party you represent">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="position" class="required">Position Applying For</label>
+                        <select id="position" name="position" required>
+                            <option value="" disabled selected>Select the position</option>
+                            <option value="President">President</option>
+                            <option value="Vice President">Vice President</option>
+                            <option value="Secretary">Secretary</option>
+                            <option value="Treasurer">Treasurer</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <!-- Additional Information Section -->
+                <fieldset>
+                    <legend>Additional Information</legend>
+                    
+                    <div class="form-group">
+                        <label for="candidatePhoto" class="required">Upload Photo</label>
+                        <input type="file" id="candidatePhoto" name="candidatePhoto" accept="image/*" required>
+                        <div class="file-upload-info">Passport size photo recommended (JPG, PNG)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="biography" class="required">Brief Biography</label>
+                        <textarea id="biography" name="biography" rows="4" required placeholder="Tell us about yourself and your qualifications"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Application</button>
+            </form>
+
+            <div class="footer">
+                <p>Already applied? <a href="#">Check your status</a></p>
+            </div>
         </div>
     </div>
-
 </body>
 </html>
