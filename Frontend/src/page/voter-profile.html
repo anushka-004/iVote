@@ -3,321 +3,606 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>iVote - Admin Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    line-height: 1.6;
-}      
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-}
-
-header {
-    background: linear-gradient(90deg, #2C3E50, #4CA1AF);
-    color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-header h1 {
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    padding: 0.5rem;
-}
-
-#navbar nav {
-    background-color: #e0f7fa;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#navbar nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-#navbar nav a {
-    text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    color: #00796B;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#navbar nav a:hover {
-    background-color: #b2ebf2;
-    color: #004d40;
-}
-
-
-
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 60px;
-}
-
-.profile-image {
-    margin-bottom: 30px;
-}
-
-.profile-image img {
-    border-radius: 50%;
-    border: 5px solid rgba(255, 255, 255, 0.6);
-    width: 180px;
-    height: 180px;
-}
-
-h1 {
-    color: white;
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-/* Updated Cards Styling */
-.cards-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    text-align: center;
-    color: rgb(20, 15, 15);
-    font-family: 'Poppins', sans-serif;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    aspect-ratio: 1; /* Ensures square shape */
-    max-width: 300px; /* Card width limit */
-    margin: 0 auto;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-}
-
-.card img {
-    width: 100%;
-    height: 100%; /* Ensures image fits the square card */
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.card h3 {
-    font-size: 20px;
-    margin-top: 12px;
-    margin-bottom: 8px;
-}
-
-.card p {
-    font-size: 14px;
-}
-
-/* Make cards responsive */
-@media (max-width: 768px) {
-    .cards-wrapper {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .card {
-        width: 100%;
-    }
-}
-
-.btn-container {
-    margin-top: 15px;
-}
-
-.btn-container a {
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    margin: 5px;
-}
-
-.btn-container a:first-child {
-    background-color: transparent;
-    border: 1px solid rgba(17, 12, 12, 0.5);
-    border-radius: 30px;
-}
-
-.btn-container a:last-child {
-    background-color: #00d1ff;
-    color: white;
-}
-
-.btn-container a:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.footer {
-    background-color: #000000;
-    color: white;
-    padding: 2rem 0;
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.social-links a {
-    color: white;
-    text-decoration: none;
-}
-@media(max-width: 480px) {
-    
-
-    #navbar nav ul {
-        gap: 0.5rem;
-    }
-
-    #navbar nav a {
-        padding: 0.4rem 0.8rem;
-    }
-
-    
-}
-
+        :root {
+            --primary-color: #173559;
+            --secondary-color: #4298f5;
+            --light-blue: #81c4ff;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            color: var(--white);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-brand {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .navbar-brand span {
+            color: var(--light-blue);
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 20px;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Admin Profile Styles */
+        .admin-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .admin-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .admin-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .admin-sections {
+            padding: 40px 0;
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .admin-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            position: relative;
+        }
+        
+        .card-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .card-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #122a47;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(23, 53, 89, 0.1);
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--light-blue);
+        }
+        
+        .footer-column p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .admin-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px 0;
+                z-index: 1000;
+            }
+            
+            .navbar-nav.show {
+                display: flex;
+            }
+            
+            .nav-item {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .admin-title {
+                font-size: 1.8rem;
+            }
+            
+            .admin-subtitle {
+                font-size: 1rem;
+            }
+            
+            .card-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="container1">
-            <h1>iVote  -   Online Voting Plateform</h1>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand"><span>i</span>Vote</a>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="User_Guidelines.html" class="nav-link">User Guidelines</a>
+                </li>
+                <li class="nav-item">
+                    <a href="aboutUs.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contactUs.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
         </div>
-        <div id="navbar"> 
-           <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="logout.html">Logout</a></li>
-                </ul>
-            </nav>
-            </div>
-    </header>
-
+    </nav>
     
-    <div class="container">
-        
-        
-        <div class="cards-wrapper">
-            <div class="card">
-                <img src="Screenshot 2025-02-26 130253.png" alt="Option 1">
-                <h3>Perform Voting</h3>
-                <p>Cast your vote by selecting your preferred candidates and submitting your choices securely.</p>
-                <div class="btn-container">
-                   
-                    <a href="perform.html">Action</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="icon 1_4.jpg" alt="Option 2">
-                <h3>Results</h3>
-                <p>Here are the election results, showcasing the candidates and their respective vote counts. Explore the final tally and see how each candidate performed.</p>
-                <div class="btn-container">
-                    <a href="result.html">Details</a>
-                   
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="Designer Challenges Himself To Create Logos With Hidden Meanings For A Year, And Result Is Amazing.jpg" alt="Option 3">
-                <h3>Upcoming Election</h3>
-                <p>Stay informed about upcoming elections and prepare to cast your vote for the next candidates.</p>
-                <div class="btn-container">
-                    <a href="upElec.html">Details</a>
-                    
-                </div>
-            </div>
-
-
-            <div class="card">
-                <img src="Ce graphiste transforme les mots en logos créatifs pour renforcer leur sens.jpg" alt="Option 4">
-                <h3>Previous Elections</h3>
-                <p>Review the outcomes and details of previous elections to see past candidates and results.</p>
-                <div class="btn-container">
-                    <a href="prv.html">Details</a>
-                    
-                </div>
-                 
-            </div>
-
-            <div class="card">
-                <img src="Your Vote Counts.jpg" alt="Option 5">
-                <h3>Current Election</h3>
-                <p>Get real-time updates and information about the ongoing elections, including candidates and key details.</p>
-                <div class="btn-container">
-                    <a href="curr.html">Details</a>
-                    
-                </div>
-
-            </div>
-
-
-            
-            <div class="card">
-                <img src="candidate-selection.png" alt="Option 6">
-                <h3>Apply for Candidate</h3>
-                <p>Get real-time updates and information about the ongoing elections, including candidates and key details.</p>
-                <div class="btn-container">
-                    <a href="registration.html">Action</a>
-                    
-                </div>
-
-            </div>
-            
-        
-    </div>
-</div>
-    <div class="footer">
-        <p>© 2025 iVote. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <h1 class="admin-title">Admin Dashboard</h1>
+            <p class="admin-subtitle">Manage your organization's voting activities in one place</p>
         </div>
-   
+    </header>
+    
+    <!-- Admin Sections -->
+    <section class="admin-sections">
+        <div class="container">
+            <div class="admin-grid">
+                <!-- Conduct Voting -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Perfome Voting</h2>
+                        <p class="card-subtitle">Give you vote in new elections</p>
+                        <i class="fas fa-vote-yea card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">Templates</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Recent Elections</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                              <a href="perform.html">
+                            <button class="btn btn-primary">Vote Here</button></a>
+                            <button class="btn btn-outline">View Templates</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Elections -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Current Elections</h2>
+                        <p class="card-subtitle">Monitor ongoing voting activities</p>
+                        <i class="fas fa-chart-line card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Active</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">438</div>
+                                <div class="stat-label">Total Votes</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                             <a href="curr.html">
+                            <button class="btn btn-primary">Monitor Live</button></a>
+                            <button class="btn btn-outline">Manage Settings</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Previous Elections -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Previous Elections</h2>
+                        <p class="card-subtitle">Review past election data</p>
+                        <i class="fas fa-history card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">7,521</div>
+                                <div class="stat-label">Total Votes</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                              <a href="prv.html">
+                            <button class="btn btn-primary">View History</button></a>
+                            <button class="btn btn-outline">Export Data</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Elections -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Upcoming Elections</h2>
+                        <p class="card-subtitle">Plan and schedule future events</p>
+                        <i class="fas fa-calendar-alt card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Scheduled</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1</div>
+                                <div class="stat-label">Drafts</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="upElec.html">
+                            <button class="btn btn-primary">Schedule New</button></a>
+                            <button class="btn btn-outline">Edit Existing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Results</h2>
+                        <p class="card-subtitle">Analyze and publish election results</p>
+                        <i class="fas fa-poll card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Published</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Ready to Publish</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="result.html">
+                            <button class="btn btn-primary">View Reports</button></a>
+                            <button class="btn btn-outline">Publish Results</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View Candidates -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Aplly As Candidates</h2>
+                        <p class="card-subtitle">Aplly for  candidate to appear in election</p>
+                        <i class="fas fa-user-tie card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Active Candidates</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Pending Approval</div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                             <a href="registration.html">
+                            <button class="btn btn-primary">Browse Candidates</button></a>
+                            <button class="btn btn-outline">Manage Applications</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About iVote</h3>
+                    <p>iVote is a secure online voting platform designed to make democratic processes accessible, transparent, and efficient for all types of organizations.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="aboutUs.html">About Us</a></li>
+                        <li><a href="User_Guidelines.html">User Guidelines</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@ivote.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 iVote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navbarNav = document.querySelector('.navbar-nav');
+        
+        mobileNavToggle.addEventListener('click', () => {
+            navbarNav.classList.toggle('show');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar-nav') && !e.target.closest('.mobile-nav-toggle')) {
+                if (navbarNav.classList.contains('show')) {
+                    navbarNav.classList.remove('show');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
