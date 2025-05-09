@@ -1,189 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Current Elections - iVote</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-       * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 1rem;
-        }
-        header {
-            background: linear-gradient(90deg, #2C3E50, #4CA1AF);
-            color: #fff;
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        header h1 {
-            text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
-        }
-        #navbar nav {
-            background-color: #e0f7fa;
-            padding: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        #navbar nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-        #navbar nav a {
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            color: #00796B;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        #navbar nav a:hover {
-            background-color: #b2ebf2;
-            color: #004d40;
-        }
-        h2 {
-            text-align: center;
-            margin: 2rem 0 1rem 0;
-            color: #2C3E50;
-            font-size: 2rem;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 20px;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-        .card-header {
-            background-color: #4CA1AF;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .card-body {
-            padding: 1rem;
-        }
-        .card-body p {
-            margin-bottom: 0.6rem;
-        }
-        .cta-btn {
-            display: inline-block;
-            background-color: #00796B;
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        .cta-btn:hover {
-            background-color: #004d40;
-        }
-        footer {
-            background-color: #2C3E50;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 60px;
-        }
-        footer p {
-            font-size: 1em;
-        }
-        @media (max-width: 600px) {
-            .card-header {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Current Elections - iVote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background-color: #153A5B;
+    }
+    #topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    #topbar h1 {
+      color: #5BC2F1;
+      font-size: 1.8rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #5BC2F1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: #153A5B;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-header {
+      background-color: #1E518D;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-body p {
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #007BFF;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .cta-btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: #153A5B;
+      color: white;
+      padding: 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h4 {
+      color: #5BC2F1;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: white;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a:hover {
+      color: #5BC2F1;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      background-color: #1E518D;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .social-icons a:hover {
+      background-color: #5BC2F1;
+      color: #153A5B;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <h1>iVote - Online Voting Platform</h1>
+  <header>
+    <div id="topbar">
+      <h1>iVote</h1>
+      <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          
+          <li><a href="User_Guidelines.html">User Guidelines</a></li>
+          <li><a href="aboutUs.html">About Us</a></li>
+          <li><a href="logout.html">Logout</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <div id="navbar"> 
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
-                <li><a href="index.html">Login / Register</a></li>
-                <li><a href="User_Guidelines.html">User Guidelines</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav> 
-    </div> 
-</header>
+  </header>
 
-<main class="container">
+  <main class="container">
     <h2>Current Elections</h2>
     <div class="card-grid">
-
-        <!-- Student Council -->
-        <div class="card">
-            <div class="card-header">Student Council Election</div>
-            <div class="card-body">
-                <p><strong>Positions:</strong> President, Vice President, Treasurer</p>
-                <p><strong>Voting Period:</strong> May 10 - May 15, 2025</p>
-                <p><strong>Eligibility:</strong> All registered students</p>
-                <a href="perform.html" class="cta-btn">Vote Now</a>
-            </div>
+      <div class="card">
+        <div class="card-header">Student Council Election</div>
+        <div class="card-body">
+          <p><strong>Positions:</strong> President, Vice President, Treasurer</p>
+          <p><strong>Voting Period:</strong> May 10 - May 15, 2025</p>
+          <p><strong>Eligibility:</strong> All registered students</p>
+          <a href="perform.html" class="cta-btn">Vote Now</a>
         </div>
+      </div>
 
-        <!-- Alumni Association -->
-        <div class="card">
-            <div class="card-header">Alumni Association Election</div>
-            <div class="card-body">
-                <p><strong>Positions:</strong> Secretary, Treasurer</p>
-                <p><strong>Voting Period:</strong> May 8 - May 20, 2025</p>
-                <p><strong>Eligibility:</strong> Verified alumni members</p>
-                <a href="perform.html" class="cta-btn">Vote Now</a>
-            </div>
+      <div class="card">
+        <div class="card-header">Alumni Association Election</div>
+        <div class="card-body">
+          <p><strong>Positions:</strong> Secretary, Treasurer</p>
+          <p><strong>Voting Period:</strong> May 8 - May 20, 2025</p>
+          <p><strong>Eligibility:</strong> Verified alumni members</p>
+          <a href="perform.html" class="cta-btn">Vote Now</a>
         </div>
+      </div>
 
-        <!-- Faculty Senate -->
-        <div class="card">
-            <div class="card-header">Faculty Senate Election</div>
-            <div class="card-body">
-                <p><strong>Positions:</strong> Department Representatives</p>
-                <p><strong>Voting Period:</strong> May 5 - May 14, 2025</p>
-                <p><strong>Eligibility:</strong> Full-time faculty members</p>
-                <a href="perform.html" class="cta-btn">Vote Now</a>
-            </div>
+      <div class="card">
+        <div class="card-header">Faculty Senate Election</div>
+        <div class="card-body">
+          <p><strong>Positions:</strong> Department Representatives</p>
+          <p><strong>Voting Period:</strong> May 5 - May 14, 2025</p>
+          <p><strong>Eligibility:</strong> Full-time faculty members</p>
+          <a href="perform.html" class="cta-btn">Vote Now</a>
         </div>
-
+      </div>
     </div>
-</main>
+  </main>
 
-<footer>
-    <p>&copy; 2025 iVote - Online Voting Platform. All rights reserved.</p>
-</footer>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About iVote</h4>
+        <p>iVote is a secure online voting platform designed to make democratic processes accessible, transparent, and efficient for all types of organizations.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="aboutUs.html">About Us</a></li>
+          <li><a href="User_Guidelines.html">User Guidelines</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>Email: info@ivote.com</p>
+        <p>Phone: +1 (555) 123-4567</p>
+        <div class="social-icons">
+          <a href="#">f</a>
+          <a href="#">t</a>
+          <a href="#">i</a>
+          <a href="#">in</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 iVote. All rights reserved.
+    </div>
+  </footer>
 
 </body>
 </html>
